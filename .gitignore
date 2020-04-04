@@ -2,7 +2,6 @@ __pycache__
 venv
 .vscode
 node_modules
-README.md
 test_flaskr.py
 .DS_STORE
 .bash_profile
