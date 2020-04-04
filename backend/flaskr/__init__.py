@@ -116,23 +116,21 @@ def create_app(test_config=None):
 
     @app.route("/categories/<int:category_id>/questions")
     def get_paginated_questions_by_category(category_id):
-        try:
-            selection = Question.query.filter_by(category=category_id).all()
-            current_questions = paginate_questions(request, selection)
+        selection = Question.query.filter_by(category=category_id).all()
+        
+        if len(selection) == 0:
+            abort(404)
 
-            if len(current_questions) == 0:
-                abort(404)
+        current_questions = paginate_questions(request, selection)
 
-            return jsonify(
-                {
-                    "success": True,
-                    "questions": current_questions,
-                    "total_questions": len(selection),
-                    "current_category": category_id,
-                }
-            )
-        except:
-            abort(422)
+        return jsonify(
+            {
+                "success": True,
+                "questions": current_questions,
+                "total_questions": len(selection),
+                "current_category": category_id,
+            }
+        )
 
     @app.route("/quizzes", methods=["POST"])
     def quiz():
