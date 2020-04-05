@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 import json
 
-database_path = "postgresql://{}/{}".format(os.environ['POSTGRESS_HOST'], os.environ['POSTGRESS_DATABASE'])
+database_path = "postgresql://{}/{}".format("localhost:5432", "trivia")
 db = SQLAlchemy()
 
 """
@@ -79,4 +79,3 @@ class Category(db.Model):
 
     def format(self):
         return {"id": self.id, "type": self.type}
-

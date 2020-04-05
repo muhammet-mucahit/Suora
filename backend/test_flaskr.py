@@ -81,9 +81,9 @@ class TriviaTestCase(unittest.TestCase):
 
     def test_add_question(self):
         res = self.client().post("/questions", json={
-            "question": "In which city did coronavirus first appear?", 
-            "answer": "Wuhan", 
-            "category": 1, 
+            "question": "In which city did coronavirus first appear?",
+            "answer": "Wuhan",
+            "category": 1,
             "difficulty": 1
         })
         data = json.loads(res.data)
@@ -131,7 +131,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(data["success"], False)
         self.assertEqual(data["error"], 404)
         self.assertEqual(data["message"], "Not found")
-    
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
