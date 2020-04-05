@@ -68,7 +68,8 @@ def create_app(test_config=None):
                 questions = Question.query.filter(
                     Question.question.ilike("%{}%".format(searchTerm))
                 )
-                current_questions, total = paginate_questions(request, questions)
+                current_questions, total = paginate_questions(
+                    request, questions)
                 return jsonify(
                     {
                         "success": True,
@@ -89,7 +90,8 @@ def create_app(test_config=None):
                     difficulty=body["difficulty"],
                 )
                 question.insert()
-                current_questions, total = paginate_questions(request, Question.query)
+                current_questions, total = paginate_questions(
+                    request, Question.query)
                 return jsonify(
                     {
                         "success": True,
